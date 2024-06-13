@@ -1,0 +1,26 @@
+{
+  "name": "new-back",
+  "version": "1.0.0",
+  "description": "Je reprend le back-end de Empts",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run dev",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Sydney DOSSOU",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "json-web-token": "^3.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.10.0",
+    "nodemon": "^3.1.3",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
