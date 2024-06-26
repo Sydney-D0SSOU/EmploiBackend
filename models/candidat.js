@@ -15,7 +15,8 @@ const Candidat = sequelize.define('Candidat', {
   email: DataTypes.STRING,
   phone: DataTypes.INTEGER,
   jourdispo: DataTypes.DATE,
-  cv: DataTypes.STRING // Assuming the CV file path is stored as a string
+  cv: DataTypes.STRING, // Assuming the CV file path is stored as a string
+  locality: DataTypes.STRING // New attribute added here
 }, {});
 
 module.exports = Candidat;

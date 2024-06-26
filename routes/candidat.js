@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../middleware/upload'); // Importer le middleware de téléchargement
 const candidatController = require('../controllers/candidat');
 
 /**
@@ -19,7 +20,7 @@ const candidatController = require('../controllers/candidat');
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -39,6 +40,9 @@ const candidatController = require('../controllers/candidat');
  *                 format: date
  *               cv:
  *                 type: string
+ *                 format: binary
+ *               locality:
+ *                 type: string
  *           example:   # Fournir un exemple de JSON par défaut
  *             nom: Doe
  *             prenom: John
@@ -46,12 +50,12 @@ const candidatController = require('../controllers/candidat');
  *             email: john.doe@example.com
  *             phone: 123456789
  *             jourdispo: "2024-06-10"
- *             cv: "/chemin/vers/mon/cv.pdf"
+ *             localité: "Paris"
  *     responses:
  *       201:
  *         description: Created
  */
-router.post('/create', candidatController.createCandidat);
+router.post('/create', upload.single('cv'), candidatController.createCandidat);
 
 /**
  * @swagger
@@ -125,6 +129,8 @@ router.get('/:id', candidatController.getCandidatById);
  *                 format: date
  *               cv:
  *                 type: string
+ *               locality:
+ *                 type: string
  *           example:   # Fournir un exemple de JSON par défaut
  *             nom: Doe
  *             prenom: John
@@ -132,7 +138,7 @@ router.get('/:id', candidatController.getCandidatById);
  *             email: john.doe@example.com
  *             phone: 123456789
  *             jourdispo: "2024-06-10"
- *             cv: "/chemin/vers/mon/cv.pdf"
+ *             locality: "Paris"
  *     responses:
  *       200:
  *         description: Updated

@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Candidats', {
@@ -27,6 +28,9 @@ module.exports = {
         type: Sequelize.DATE
       },
       cv: {
+        type: Sequelize.STRING
+      },
+      locality: {
         type: Sequelize.STRING
       },
       createdAt: {
