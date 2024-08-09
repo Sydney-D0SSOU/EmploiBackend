@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouvelle Agence Créée</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #f4f4f4; padding: 10px; text-align: center; }
+    .content { background: #ffffff; padding: 20px; border: 1px solid #ddd; }
+    .footer { background: #f4f4f4; padding: 10px; text-align: center; font-size: 0.8em; }
+    .button { display: inline-block; padding: 10px 20px; color: #ffffff; background: #007bff; text-decoration: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Agence Créée</h1>
+    </div>
+    <div class="content">
+      <p>Bonjour,</p>
+      <p>Une nouvelle agence a été créée avec les détails suivants :</p>
+      <ul>
+        <li><strong>Localisation :</strong> ${Localisation}</li>
+        <li><strong>Email :</strong> ${email}</li>
+        <li><strong>Admin ID :</strong> ${idAdmin}</li>
+      </ul>
+      <p>Merci de votre attention.</p>
+    </div>
+    <div class="footer">
+      <p>Cordialement,<br>L'équipe Emploi Pour Tous</p>
+    </div>
+  </div>
+</body>
+</html>

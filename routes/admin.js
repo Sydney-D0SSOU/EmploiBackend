@@ -77,7 +77,7 @@ router.post('/login', adminController.loginAdmin);
  *       500:
  *         description: Error retrieving admins.
  */
-router.get('/', adminController.getAllAdmins);
+router.get('/list', adminController.getAllAdmins);
 
 /**
  * @swagger

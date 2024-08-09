@@ -59,7 +59,7 @@ router.post('/create', upload.single('cv'), candidatController.createCandidat);
 
 /**
  * @swagger
- * /candidat:
+ * /candidat/list:
  *   get:
  *     summary: Retrieve a list of candidats
  *     tags: [Candidats]
@@ -68,7 +68,7 @@ router.post('/create', upload.single('cv'), candidatController.createCandidat);
  *       200:
  *         description: A list of candidats
  */
-router.get('/', candidatController.getAllCandidats);
+router.get('/list', candidatController.getAllCandidats);
 
 /**
  * @swagger

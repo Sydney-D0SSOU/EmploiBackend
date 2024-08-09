@@ -1,5 +1,9 @@
 const  Recruteur  = require('../models/recruteur');
-
+const transporter = require('../config/mailer');
+const path = require('path');
+const fs = require('fs');
+const templatePath = path.join(__dirname, '../templates/recruteur-email-template.html');
+const emailTemplate = fs.readFileSync(templatePath, 'utf8');
 // Create Recruteur
 exports.createRecruteur = async (req, res) => {
     try {
@@ -18,7 +22,23 @@ exports.createRecruteur = async (req, res) => {
             localisation,
             Detail
         });
-
+        const emailContent = emailTemplate
+        .replace('${name}', name)
+        .replace('${contact}', contact)
+        .replace('${email}', email)
+        .replace('${sujet}', sujet)
+        .replace('${localisation}', localisation)
+        .replace('${Detail}', Detail)
+    
+        const mailOptions = {
+          from: 'service@emploipourtous.africa',
+          to: req.body.email,
+          subject: 'Confirmation de demande de recrutement',
+          html: emailContent
+        };
+       ;
+      
+        await transporter.sendMail(mailOptions);
         return res.status(201).json(recruteur);
     } catch (error) {
         return res.status(400).json({ error: error.message });

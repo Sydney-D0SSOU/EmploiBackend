@@ -3,6 +3,7 @@ const { sequelize } = require('./models'); // Importer l'instance configurée de
 const bodyParser = require('body-parser');
 const candidatrouter = require('./routes/candidat');
 const recruteurrouter = require('./routes/recruteur');
+const agencerouter = require('./routes/agence');
 const adminrouter = require('./routes/admin');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
@@ -15,7 +16,7 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0',
     info: {
-      title: 'Documentation du nouveau backend du projet zem ',
+      title: 'Documentation du nouveau backend du projet 🏍️ ',
       version: '1.0.0',
       description: 'Documentation for my Node.js backend API'
     },
@@ -50,6 +51,7 @@ sequelize.authenticate()
     console.log('Connexion à la base de données réussie.');
     app.listen(port, () => {
       console.log(`Le serveur écoute sur le port ${port}`);
+      console.log(` Documentation Swagger disponible à l'adresse http://localhost:${port}/api-docs`);	
     });
   })
   .catch(err => {
@@ -61,5 +63,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/candidat', candidatrouter);
 app.use('/recruteur',recruteurrouter);  
 app.use('/admin',adminrouter)
+app.use('/agence',agencerouter)
 
 module.exports = app;

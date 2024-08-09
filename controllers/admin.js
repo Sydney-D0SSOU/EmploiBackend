@@ -2,25 +2,40 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Admin = require('../models/admin'); // Assurez-vous d'importer correctement le modèle Admin
 require('dotenv').config(); // Charger les variables d'environnement à partir du fichier .env
-
-
+const { ValidationError } = require('sequelize');
 
 exports.createAdmin = async (req, res) => {
     const { email, password } = req.body;
 
     try {
+        // Vérifiez si un administrateur avec cet email existe déjà
+        const existingAdmin = await Admin.findOne({ where: { email } });
+        if (existingAdmin) {
+            return res.status(400).send('Email déjà utilisé');
+        }
+
+        // Hachez le mot de passe avant de l'enregistrer dans la base de données
         const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Créez un nouvel administrateur
         const add = await Admin.create({
             email: email,
             password: hashedPassword
         });
+
         console.log(add);
         res.status(201).send('Administrateur créé avec succès');
     } catch (err) {
+        if (err instanceof ValidationError) {
+            // Gérer les erreurs de validation de Sequelize
+            return res.status(400).send('Erreur de validation');
+        }
+
         console.error(err);
         res.status(500).send('Erreur lors de la création de l\'administrateur');
     }
 };
+
 
 exports.getAllAdmins = async (req, res) => {
     try {
@@ -108,7 +123,7 @@ exports.loginAdmin = async (req, res) => {
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Renvoyer le jeton JWT dans la réponse
-        res.json([{payload},{ token }]);
+        res.json(authAD=[{payload},{ token }]);
     } catch (err) {
         console.error(err);
         // Ne pas renvoyer d'informations sensibles dans les erreurs

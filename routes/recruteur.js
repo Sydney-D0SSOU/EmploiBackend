@@ -50,7 +50,7 @@ router.post('/create', recruteurController.createRecruteur);
 
 /**
  * @swagger
- * /recruteur:
+ * /recruteur/list:
  *   get:
  *     summary: Retrieve a list of recruteurs
  *     tags: [Recruteurs]
@@ -59,7 +59,7 @@ router.post('/create', recruteurController.createRecruteur);
  *       200:
  *         description: A list of recruteurs
  */
-router.get('/', recruteurController.getAllRecruteurs);
+router.get('/list', recruteurController.getAllRecruteurs);
 
 /**
  * @swagger

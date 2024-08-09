@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmation de Recrutement</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #f4f4f4; padding: 10px; text-align: center; }
+    .content { background: #ffffff; padding: 20px; border: 1px solid #ddd; }
+    .footer { background: #f4f4f4; padding: 10px; text-align: center; font-size: 0.8em; }
+    .button { display: inline-block; padding: 10px 20px; color: #ffffff; background: #007bff; text-decoration: none; border-radius: 5px; }
+    img.logo { max-width: 100px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="./logo.png" alt="Logo" class="logo">
+      <h1>Emploi Pour Tous</h1>
+    </div>
+    <div class="content">
+      <p>Bonjour ${name},</p>
+      <p>Nous avons bien reçu votre demande de recrutement. Voici les détails :</p>
+      <ul>
+        <li><strong>Nom :</strong> ${name}</li>
+        <li><strong>Contact :</strong> ${contact}</li>
+        <li><strong>Email :</strong> ${email}</li>
+        <li><strong>Sujet :</strong> ${sujet}</li>
+        <li><strong>Localisation :</strong> ${localisation}</li>
+        <li><strong>Détails :</strong> ${Detail}</li>
+      </ul>
+      <p>Merci pour votre intérêt. Nous vous tiendrons informé de la suite donnée à votre demande.</p>
+      <a href="#" class="button">Visitez notre site</a>
+    </div>
+    <div class="footer">
+      <p>Cordialement,<br>L'équipe Emploi Pour Tous</p>
+    </div>
+  </div>
+</body>
+</html>

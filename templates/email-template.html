@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmation de Candidature</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #f4f4f4; padding: 10px; text-align: center; }
+    .header img { max-width: 150px; height: auto; }
+    .content { background: #ffffff; padding: 20px; border: 1px solid #ddd; }
+    .footer { background: #f4f4f4; padding: 10px; text-align: center; font-size: 0.8em; }
+    .button { display: inline-block; padding: 10px 20px; color: #ffffff; background: #007bff; text-decoration: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <!-- Insérez le logo ici -->
+      <img src="./logo.png" alt="Logo Emploi Pour Tous">
+      <h1>Emploi Pour Tous</h1>
+    </div>
+    <div class="content">
+      <p>Bonjour ${req.body.prenom},</p>
+      <p>Nous avons bien reçu votre candidature. Voici les détails :</p>
+      <ul>
+        <li><strong>Nom :</strong> ${req.body.nom}</li>
+        <li><strong>Prénom :</strong> ${req.body.prenom}</li>
+        <li><strong>Date de naissance :</strong> ${req.body.datenaiss}</li>
+        <li><strong>Email :</strong> ${req.body.email}</li>
+        <li><strong>Téléphone :</strong> ${req.body.phone}</li>
+        <li><strong>Jour de disponibilité :</strong> ${req.body.jourdispo}</li>
+        <li><strong>Localité :</strong> ${req.body.locality}</li>
+      </ul>
+      <p>Merci pour votre intérêt. Nous vous tiendrons informé de la suite donnée à votre candidature.</p>
+      <a href="#" class="button">Visitez notre site</a>
+    </div>
+    <div class="footer">
+      <p>Cordialement,<br>L'équipe Emploi Pour Tous</p>
+    </div>
+  </div>
+</body>
+</html>
