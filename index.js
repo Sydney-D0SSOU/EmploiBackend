@@ -22,7 +22,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:4000', // Mettez l'URL de votre serveur ici
+        url: 'http://localhost:${port}/api-docs', // Mettez l'URL de votre serveur ici
         description: 'Development server'
       }
     ]
