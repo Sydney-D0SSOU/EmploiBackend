@@ -163,5 +163,78 @@ router.put('/:id', agenceController.update);
  *         description: The Agence was not found
  */
 router.delete('/:id', agenceController.delete);
+/**
+ * @swagger
+ * /agence/login:
+ *   post:
+ *     summary: Authentifier une agence
+ *     description: Cette route permet à une agence de se connecter en utilisant son email et son mot de passe. Si les informations sont correctes, un token JWT sera renvoyé pour authentifier l'utilisateur lors des requêtes futures.
+ *     tags:
+ *       - Agence
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: L'email de l'agence.
+ *                 example: "agence@example.com"
+ *               password:
+ *                 type: string
+ *                 description: Le mot de passe de l'agence.
+ *                 example: "motdepasse123"
+ *     responses:
+ *       200:
+ *         description: Authentification réussie. Un jeton JWT est renvoyé.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Authentification réussie"
+ *                 token:
+ *                   type: string
+ *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZ2VuY2VAY29tLmNvbSIsImlkQWRtaW4iOjEsImlhdCI6MTYxNjYzMzA0MywiZXhwIjoxNjE2NjY2NjQzfQ.d-JY24Wp5cKKgVJYduFezwWkX0I3g9Cn7hUazT3xgAk"
+ *       400:
+ *         description: Mauvaise demande. Les champs requis manquent ou sont mal formatés.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Les champs email et mot de passe sont requis"
+ *       401:
+ *         description: Échec de l'authentification. Mot de passe incorrect ou agence non trouvée.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Mot de passe incorrect"
+ *       500:
+ *         description: Erreur interne du serveur.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Erreur interne du serveur"
+ */
+router.post('/login', agenceController.login);
+
 
 module.exports = router;

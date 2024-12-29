@@ -87,3 +87,38 @@ exports.delete = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+const jwt = require('jsonwebtoken');
+const Agence = require('../models/Agence'); // Adapte le chemin à ta structure de projet
+
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    // Vérifier si l'email existe dans la base de données
+    const agence = await Agence.findOne({ where: { email } });
+
+    if (!agence) {
+      return res.status(404).json({ error: 'Agence non trouvée' });
+    }
+
+    // Comparer le mot de passe avec celui stocké dans la base de données (pas de cryptage ici)
+    if (password !== agence.password) {
+      return res.status(401).json({ error: 'Mot de passe incorrect' });
+    }
+
+    // Créer un jeton JWT pour l'authentification
+    const token = jwt.sign(
+      { id: agence.id, email: agence.email, idAdmin: agence.idAdmin },
+      'votre_clé_secrète', // Remplace cette clé par une clé secrète pour signer le token
+      { expiresIn: '1h' }  // Le jeton expire après 1 heure (tu peux ajuster la durée)
+    );
+
+    // Répondre avec le token d'authentification
+    res.status(200).json({
+      message: 'Authentification réussie',
+      token,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
