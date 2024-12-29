@@ -88,7 +88,6 @@ exports.delete = async (req, res) => {
   }
 };
 const jwt = require('jsonwebtoken');
-const Agence = require('../models/Agence'); // Adapte le chemin à ta structure de projet
 
 exports.login = async (req, res) => {
   try {
